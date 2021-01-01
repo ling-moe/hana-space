@@ -7,8 +7,9 @@
   ]"
   (click)="handleClick($event)"
 >
-  <Icon *ngif="icon" [type]="icon" [color]="iconColor" [size]=iconSize [ngStyle]="actualIconStyle"/>
-{{children}}
+<!--  <Icon *ngif="icon" [type]="icon" [color]="iconColor" [size]=iconSize [ngStyle]="actualIconStyle"/>-->
+  <ng-content></ng-content>
+  hana-button
 </button>
 
 <div *ngIf="label"
@@ -21,7 +22,7 @@
       labelPosition === 'right' ? 'label-right' : 'label-left'
     ]"
   >
-  <Icon *ngif="icon" [type]="icon" [color]="iconColor" [size]=iconSize [ngStyle]="actualIconStyle"/>
+<!--  <Icon *ngif="icon" [type]="icon" [color]="iconColor" [size]=iconSize [ngStyle]="actualIconStyle"/>-->
   {{children}}
 </div>
   <a

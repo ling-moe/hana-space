@@ -1,9 +1,10 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'lib-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss']
+  styleUrls: ['./button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent implements OnInit {
 
@@ -14,6 +15,7 @@ export class ButtonComponent implements OnInit {
    * @cn
    * 自定义组件样式
    */
+  @Input()
   style: object;
 
   /**
@@ -23,7 +25,8 @@ export class ButtonComponent implements OnInit {
    * @cn
    * 设置按钮大小，可选配置为： 'large','middle','small'
    */
-  size: 'large' | 'middle' | 'small' = 'middle';
+  @Input()
+  size: 'large' | 'middle' | 'small';
 
   /**
    * @en
@@ -32,7 +35,8 @@ export class ButtonComponent implements OnInit {
    * @cn
    * 设置按钮类型，可选配置：'primary','error','default','disabled'
    */
-  type: 'primary' | 'error' | 'default' | 'disabled' | 'warning' = 'default';
+  @Input()
+  type: 'primary' | 'error' | 'default' | 'disabled' | 'warning';
 
   /**
    * @en
@@ -41,7 +45,8 @@ export class ButtonComponent implements OnInit {
    * @cn
    * 按钮type 类型
    */
-  htmlType = 'button';
+  @Input()
+  htmlType: string;
 
   /**
    * @en
@@ -50,6 +55,7 @@ export class ButtonComponent implements OnInit {
    * @cn
    * 按钮label，默认显示在按钮左边
    */
+  @Input()
   label: string;
 
   /**
@@ -59,6 +65,7 @@ export class ButtonComponent implements OnInit {
    * @cn
    * 指定按钮label 位置，默认值为'left'
    */
+  @Input()
   labelPosition: 'left' | 'right';
 
   /**
@@ -68,6 +75,7 @@ export class ButtonComponent implements OnInit {
    * @cn
    * 按钮图标
    */
+  @Input()
   icon: string;
 
   /**
@@ -77,6 +85,7 @@ export class ButtonComponent implements OnInit {
    * @cn
    * 设置按钮图标颜色
    */
+  @Input()
   iconColor: string;
 
   /**
@@ -86,6 +95,7 @@ export class ButtonComponent implements OnInit {
    * @cn
    * 自定义按钮图标的样式
    */
+  @Input()
   iconStyle: object;
 
   /**
@@ -95,6 +105,7 @@ export class ButtonComponent implements OnInit {
    * @cn
    * 设置按钮图标大小
    */
+  @Input()
   iconSize: string;
 
   /**
@@ -104,6 +115,7 @@ export class ButtonComponent implements OnInit {
    * @cn
    * 设置组件class name
    */
+  @Input()
   className: string;
 
   /**
@@ -113,22 +125,18 @@ export class ButtonComponent implements OnInit {
    * @cn
    * 自定义按钮点击事件
    */
+  @Input()
   onClick: (e) => {};
-
-  /**
-   * @en
-   * Setting button children element
-   *
-   * @cn
-   * 设置按钮组件的子组件
-   */
-  children: Element;
 
   prefix = 'hana';
 
   constructor() { }
 
   ngOnInit(): void {
+    this.type = 'default';
+    this.htmlType = 'button';
+    this.size = 'middle';
+    this.className  = '';
   }
 
   handleClick(e: Event): any {
