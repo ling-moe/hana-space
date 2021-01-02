@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
-import { HanaUiComponent } from './hana-ui.component';
-
-
 
 @NgModule({
-  declarations: [HanaUiComponent],
+  declarations: [],
   imports: [
   ],
-  exports: [HanaUiComponent]
+  exports: []
 })
 export class HanaUiModule { }

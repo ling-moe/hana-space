@@ -42,9 +42,15 @@
           }
         }
       }
-    }},
+    }
+  },
   "cli": {
     "analytics": false
   },
-  "defaultProject": "hana-ui"
+  "defaultProject": "hana-ui",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleExt": "scss"
+    }
+  }
 }

@@ -116,7 +116,7 @@ export class ButtonComponent implements OnInit {
    * 设置组件class name
    */
   @Input()
-  className: string;
+  className: string[];
 
   /**
    * @en
@@ -136,7 +136,7 @@ export class ButtonComponent implements OnInit {
     this.type = 'default';
     this.htmlType = 'button';
     this.size = 'middle';
-    this.className  = '';
+    this.className = [];
   }
 
   handleClick(e: Event): any {

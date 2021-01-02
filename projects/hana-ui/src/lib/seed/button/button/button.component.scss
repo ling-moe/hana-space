@@ -1,11 +1,11 @@
-@import "../../styles/config";
+@import "../../../styles/config";
 
 %base-color-border {
   border: 0;
   color: $white;
 
   i {
-    &[class^='hanaicon'] {
+    &[class^='hana-icon'] {
       color: $white;
     }
   }

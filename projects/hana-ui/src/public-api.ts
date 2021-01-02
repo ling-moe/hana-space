@@ -3,5 +3,4 @@
  */
 
 export * from './lib/hana-ui.service';
-export * from './lib/hana-ui.component';
 export * from './lib/hana-ui.module';

@@ -17,8 +17,9 @@ describe('ButtonComponent', () => {
     fixture = TestBed.createComponent(ButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    component.className = 'test-demo';
+    component.className = ['test-demo'];
     component.size = 'large';
+    component.icon = 'flower';
     component.onClick = (e) => {
       console.log('two?');
       return 'click-event-hana';
@@ -28,8 +29,9 @@ describe('ButtonComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    expect(component.className).toEqual('test-demo');
+    expect(component.className).toEqual(['test-demo']);
     expect(component.size).toEqual('large');
+    expect(component.icon).toEqual('flower');
     expect(component.onClick(MouseEvent)).toEqual('click-event-hana');
   });
 });

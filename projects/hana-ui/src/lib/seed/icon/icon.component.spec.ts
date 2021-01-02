@@ -1,25 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HanaUiComponent } from './hana-ui.component';
+import { IconComponent } from './icon.component';
 
-describe('HanaUiComponent', () => {
-  let component: HanaUiComponent;
-  let fixture: ComponentFixture<HanaUiComponent>;
+describe('IconComponent', () => {
+  let component: IconComponent;
+  let fixture: ComponentFixture<IconComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HanaUiComponent ]
+      declarations: [ IconComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HanaUiComponent);
+    fixture = TestBed.createComponent(IconComponent);
     component = fixture.componentInstance;
+    component.type = 'flower';
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    expect(component.type).toEqual('flower');
   });
 });
