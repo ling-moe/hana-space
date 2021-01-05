@@ -7,7 +7,12 @@
       "projectType": "library",
       "root": "projects/hana-ui",
       "sourceRoot": "projects/hana-ui/src",
-      "prefix": "lib",
+      "prefix": "hana",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -47,10 +52,5 @@
   "cli": {
     "analytics": false
   },
-  "defaultProject": "hana-ui",
-  "schematics": {
-    "@schematics/angular:component": {
-      "styleExt": "scss"
-    }
-  }
+  "defaultProject": "hana-ui"
 }

@@ -1,22 +1,26 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit} from '@angular/core';
+import {
+  AfterContentInit, AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Renderer2
+} from '@angular/core';
+import {IconDirective} from '../../icon/icon.directive';
 
 @Component({
-  selector: 'lib-button',
+  selector: 'button[hana-button]',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent implements OnInit, AfterViewInit {
 
-  /**
-   * @en
-   * Custom component style
-   *
-   * @cn
-   * 自定义组件样式
-   */
-  @Input()
-  style: object;
+  @ContentChild(IconDirective, { read: ElementRef })
+  nzIconDirectiveElement!: ElementRef;
 
   /**
    * @en
@@ -26,7 +30,7 @@ export class ButtonComponent implements OnInit {
    * 设置按钮大小，可选配置为： 'large','middle','small'
    */
   @Input()
-  size: 'large' | 'middle' | 'small';
+  size: 'large' | 'middle' | 'small' = 'middle';
 
   /**
    * @en
@@ -36,27 +40,7 @@ export class ButtonComponent implements OnInit {
    * 设置按钮类型，可选配置：'primary','error','default','disabled'
    */
   @Input()
-  type: 'primary' | 'error' | 'default' | 'disabled' | 'warning';
-
-  /**
-   * @en
-   * Button HTML type attribute
-   *
-   * @cn
-   * 按钮type 类型
-   */
-  @Input()
-  htmlType: string;
-
-  /**
-   * @en
-   * Show button label, default is placed in button's left
-   *
-   * @cn
-   * 按钮label，默认显示在按钮左边
-   */
-  @Input()
-  label: string;
+  type: 'primary' | 'error' | 'default' | 'disabled' | 'warning' = 'default';
 
   /**
    * @en
@@ -66,7 +50,7 @@ export class ButtonComponent implements OnInit {
    * 指定按钮label 位置，默认值为'left'
    */
   @Input()
-  labelPosition: 'left' | 'right';
+  labelPosition: 'left' | 'right' = 'left';
 
   /**
    * @en
@@ -108,49 +92,43 @@ export class ButtonComponent implements OnInit {
   @Input()
   iconSize: string;
 
-  /**
-   * @en
-   * Custom button component class name
-   *
-   * @cn
-   * 设置组件class name
-   */
-  @Input()
-  className: string[];
-
-  /**
-   * @en
-   * Custom button click event
-   *
-   * @cn
-   * 自定义按钮点击事件
-   */
-  @Input()
-  onClick: (e) => {};
-
   prefix = 'hana';
 
-  constructor() { }
+  constructor(
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+  ) { }
 
   ngOnInit(): void {
-    this.type = 'default';
-    this.htmlType = 'button';
-    this.size = 'middle';
-    this.className = [];
+    [`${this.prefix}-button`, `${this.prefix}-button-${this.type}`, `${this.prefix}-button-${this.size}`].forEach(item => {
+      this.renderer.addClass(this.elementRef.nativeElement, item);
+    });
   }
 
-  handleClick(e: Event): any {
-    if (this.type === 'disabled') {
-      e.preventDefault();
-      return false;
-    }
+  ngAfterViewInit(): void {
+    this.assertIconOnly(this.elementRef.nativeElement, this.renderer);
+    this.insertSpan(this.elementRef.nativeElement.childNodes, this.renderer);
+  }
 
-    if (typeof this.onClick === 'function') {
-      return this.onClick(e);
+  assertIconOnly(element: HTMLButtonElement, renderer: Renderer2): void {
+    const listOfNode = Array.from(element.childNodes);
+    const iconCount = listOfNode.filter(node => node.nodeName === 'I').length;
+    const noText = listOfNode.every(node => node.nodeName !== '#text');
+    const noSpan = listOfNode.every(node => node.nodeName !== 'SPAN');
+    const isIconOnly = noSpan && noText && iconCount >= 1;
+    if (isIconOnly) {
+      renderer.setStyle(element, 'marginRight', '3');
     }
   }
 
-  get actualIconStyle(): object{
-    return {...this.iconStyle, marginRight: 3};
+  insertSpan(nodes: NodeList, renderer: Renderer2): void {
+    nodes.forEach(node => {
+      if (node.nodeName === '#text') {
+        const span = renderer.createElement('span');
+        const parent = renderer.parentNode(node);
+        renderer.insertBefore(parent, span, node);
+        renderer.appendChild(span, node);
+      }
+    });
   }
 }
