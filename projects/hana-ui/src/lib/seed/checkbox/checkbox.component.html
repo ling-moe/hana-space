@@ -1,1 +1,15 @@
-<p>checkbox works!</p>
+<div [ngClass]="checkedIcon && unCheckedIcon ? 'hana-checkbox-custom' : 'hana-checkbox-inner'">
+  <ng-container *ngIf="checked && checkedIcon; else checkedIcon"></ng-container>
+  <ng-container *ngIf="!checked && unCheckedIcon; else unCheckedIcon"></ng-container>
+</div>
+<input
+  type="checkbox"
+  class="ant-checkbox-input"
+  style="display: none"
+  [checked]="checked"
+  [ngModel]="checked"
+  [disabled]="disabled"
+  (click)="$event.stopPropagation()"
+  />
+<span><ng-content></ng-content></span>
+
