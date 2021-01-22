@@ -1,0 +1,61 @@
+<div class="hana-date-picker-days">
+    <div
+      class="hana-date-picker-days-container"
+      [ngClass]="'hana-date-picker-days-' + toPre ? 'pre' : 'next'"
+    >
+    <div>
+      <div *ngFor="let row of rows">
+        <div class="hana-date-picker-days-row">
+          <div *ngFor="let col of cols">
+            <div ngSwitch="let dayIndex=1;days[dayIndex++]?.mode">
+              <div *ngSwitchCase="'pre'">
+                <ng-container *ngTemplateOutlet="day; context: {
+                index: col,
+                day: day,
+                dayClass: 'hana-date-picker-days-day-pre',
+                handleSelect: preDisabled ? nop : this.handleChangeDayPreMonth}">
+                </ng-container>
+              </div>
+              <div *ngSwitchCase="'current'">
+                <div *ngIf="day === currentDay">
+                  <ng-container *ngTemplateOutlet="day; context: {
+                      index: col,
+                      day: day,
+                      dayClass: ['hana-date-picker-days-day-current', 'hana-date-picker-days-day-active'],
+                      handleSelect: nop}">
+                  </ng-container>
+                </div>
+                <div *ngIf="day !== currentDay">
+                  <ng-container *ngTemplateOutlet="day; context: {
+                    index: col,
+                    day: day,
+                    dayClass: ['hana-date-picker-days-day-current'],
+                    handleSelect: this.handleChangeDay}">
+                  </ng-container>
+                </div>
+              </div>
+              <div *ngSwitchCase="'next'">
+                <ng-container *ngTemplateOutlet="day; context: {
+                index: col,
+                day: day,
+                dayClass: ['hana-date-picker-days-day-next'],
+                handleSelect: preDisabled ? nop : this.handleChangeDayPreMonth}">
+                </ng-container>
+              </div>
+              <div *ngSwitchDefault>
+              </div>
+            </div>
+
+        </div>
+      </div>
+
+      </div>
+    ))}
+    </div>
+    </div>
+</div>
+<ng-template #day let-index let-day let-dayClass let-handleSelect>
+  <span class="hana-date-picker-days-day" [ngClass]="dayClass" (click)="handleSelect(day)">
+    {{day}}
+  </span>
+</ng-template>

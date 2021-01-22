@@ -1,0 +1,18 @@
+<div *ngIf="open" class="hana-date-picker-select hana-date-picker-select-open">
+  <div *ngFor="let value of values;let i=index">
+    <div
+      class="hana-date-picker-select-option"
+      [ngClass]="value === current ? 'hana-date-picker-select-option-current' : ''"
+      (click)="handleSelect(value)"
+    >
+      {{labels[i]}}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!open" class="hana-date-picker-select hana-date-picker-select-close">
+  <div class="hana-date-picker-select-option"
+       (click)="handleSwitchOpen()">
+    {{labels[values.indexOf(current)]}}
+  </div>
+</div>

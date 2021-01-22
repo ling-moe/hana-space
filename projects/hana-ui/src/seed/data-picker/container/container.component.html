@@ -1,0 +1,18 @@
+<div class="hana-date-picker-container">
+  <div *ngIf="show" class="hana-date-picker-container hana-date-picker-container-container">
+    <div>
+      <ng-content></ng-content>
+      <div class="hana-date-picker-action-buttons">
+        <Button class="hana-date-picker-clear-button" onClick={handleClear}>
+          {{clearName}}
+        </Button>
+        <Button class="hana-date-picker-confirm-button" onClick={handleConfirm}>
+          {{confirmName}}
+        </Button>
+        <Button class="hana-date-picker-confirm-button" onClick={handleCancel}>
+          {{cancelName}}
+        </Button>
+      </div>
+    </div>
+  </div>
+</div>

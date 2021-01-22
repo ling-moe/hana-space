@@ -1,0 +1,20 @@
+<div class="hana-date-picker-display">
+  <div
+    class="hana-date-picker-display-container"
+    [ngClass]="'hana-date-picker-display-pre' + toPre ? 'pre' : 'next'"
+  >
+    <div>
+      <p class="hana-date-picker-display-date">
+        {{date.getDate() < 10 ? '0' : '' + date.getDate()}}
+      </p>
+      <div class="hana-date-picker-display-ymd">
+        <p class="hana-date-picker-display-day">{{weekdayNames[date.getDay()]}}</p>
+        <div class="hana-date-picker-display-year-month">
+          <p class="hana-date-picker-display-month">{{monthNames[date.getMonth()]}}</p>
+          <i [ngClass]="'hana-date-picker-display-icon-' + (date.getMonth() + 1)"/>
+          <p class="hana-date-picker-display-year">{{date.getFullYear()}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
