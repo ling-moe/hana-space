@@ -19,3 +19,6 @@ export * from './seed/checkbox/checkbox.component';
 // checkbox
 export * from './seed/data-picker/date-picker.module';
 export * from './seed/data-picker/date-picker/date-picker.component';
+// icon
+export * from './seed/divider/divider.module';
+export * from './seed/divider/divider.directive';
