@@ -1,1 +1,34 @@
-<p>date-picker works!</p>
+<hana-container
+  [show]="show"
+  [withClear]="withClear"
+  [clearName]="clearName"
+  [confirmName]="confirmName"
+  [cancelName]="cancelName"
+  (handleConfirm)="handleConfirm(date)"
+  (handleClear)="handleClear()"
+  (handleCancel)="handleCancel()"
+>
+  <div class="hana-date-picker-content">
+    <hana-display
+      [date]="date"
+      [toPre]="toPre"
+      [weekdayNames]="getWithLang('weekdayNames')"
+      [monthNames]="getWithLang('monthNames')"
+    ></hana-display>
+    <hana-year-mouth
+      [date]="date"
+      [toPre]="toPre"
+      (handleChange)="handleChangeDate(date, autoOk)"
+      [yearStart]="yearStart"
+      [yearEnd]="yearEnd"
+    ></hana-year-mouth>
+    <hana-day
+      [date]="date"
+      [toPre]="toPre"
+      (handleChange)="handleChangeDate(date, autoOk)"
+      [weekdayShortNames]="getWithLang('weekdayShortNames')"
+      [yearStart]="yearStart"
+      [yearEnd]="yearEnd"
+    ></hana-day>
+  </div>
+</hana-container>

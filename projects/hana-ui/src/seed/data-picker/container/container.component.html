@@ -3,13 +3,13 @@
     <div>
       <ng-content></ng-content>
       <div class="hana-date-picker-action-buttons">
-        <Button class="hana-date-picker-clear-button" onClick={handleClear}>
+        <Button class="hana-date-picker-clear-button" (click)="handleClear.emit()">
           {{clearName}}
         </Button>
-        <Button class="hana-date-picker-confirm-button" onClick={handleConfirm}>
+        <Button class="hana-date-picker-confirm-button" (click)="handleConfirm.emit()">
           {{confirmName}}
         </Button>
-        <Button class="hana-date-picker-confirm-button" onClick={handleCancel}>
+        <Button class="hana-date-picker-confirm-button" (click)="handleCancel.emit()">
           {{cancelName}}
         </Button>
       </div>

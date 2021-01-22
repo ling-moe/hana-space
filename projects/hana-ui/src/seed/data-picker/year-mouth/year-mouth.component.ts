@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Input, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'hana-year-mouth',
@@ -9,15 +9,22 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 export class YearMouthComponent implements OnInit {
 
   /** Current date. */
+  @Input()
   date: string & Date | null;
   /** If the next date if before the previous one. */
+  @Input()
   toPre: boolean;
-  /** Callback for date changing. */
-  handleChange: (date: Date) => void;
   /** The start year.  */
+  @Input()
   yearStart: number;
   /** The end year.  */
+  @Input()
   yearEnd: number;
+
+  /** Callback for date changing. */
+  @Output()
+  handleChange = new EventEmitter<Date>();
+
   years: number[];
   months: number[];
   monthsLabels: string[];
@@ -45,7 +52,7 @@ export class YearMouthComponent implements OnInit {
     const date = new Date(oldDate.getTime());
     date.setDate(1);
     date[method](value);
-    handleChange(date);
+    handleChange.emit(date);
   }
 
   handleChangeMonth(value): void {

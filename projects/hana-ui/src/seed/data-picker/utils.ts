@@ -11,7 +11,7 @@ export const leaveTime = 300;
 
 export {
   arrayWith7Strings, arrayWith12Strings, dateOrStringOrNull
-} from '../../utils';
+} from './date-picker';
 
 export const nop = () => {};
 
@@ -60,8 +60,8 @@ export function generateDays(date): any[] {
   const d1 = new Date(year, month, 1);
   const d2 = new Date(year, month + 1, 1);
 
-  const monthLengthPre = ~~((d1 - d0) / (1000 * 60 * 60 * 24));
-  const monthLengthCurrent = ~~((d2 - d1) / (1000 * 60 * 60 * 24));
+  const monthLengthPre = (d1.getDate() - d0.getDate()) / (1000 * 60 * 60 * 24);
+  const monthLengthCurrent = (d2.getDate() - d1.getDate()) / (1000 * 60 * 60 * 24);
 
   const firstWeekday = d1.getDay() === 0 ? 7 : d1.getDay();
 
@@ -84,4 +84,4 @@ export function generateDays(date): any[] {
     day += 1;
   }
   return days;
-};
+}

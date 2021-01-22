@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
 
 export type arrayWith7Strings = [
   string,
@@ -33,12 +33,16 @@ export type arrayWith12Strings = [
 export class DisplayComponent implements OnInit {
 
   /** Current date. */
-  date: string | Date | null;
+  @Input()
+  date: string & Date | null;
   /** If the next date if before the previous one. */
+  @Input()
   toPre: boolean;
   /** Names of weekdays. */
+  @Input()
   weekdayNames: arrayWith7Strings;
   /** Names of months. */
+  @Input()
   monthNames: arrayWith12Strings;
 
   constructor() { }

@@ -2,13 +2,13 @@
   <i
     class="hana-date-picker-year-month-pre"
     [ngClass]="preDisabled ? 'hana-date-picker-year-month-disabled' : ''"
-  (click)="handleChangeToPre(year, month)"
-  />
+    (click)="handleChangeToPre(year, month)"
+  ></i>
   <div class="hana-date-picker-year-month-select">
-      <div
-        class="hana-date-picker-year-month-select-container"
-        [ngClass]="'hana-date-picker-year-month-select-' + toPre ? 'pre' : 'next'"
-      >
+    <div
+      class="hana-date-picker-year-month-select-container"
+      [ngClass]="'hana-date-picker-year-month-select-' + toPre ? 'pre' : 'next'"
+    >
       <div>
         <div class="hana-date-picker-year-month-year">
           <hana-select
@@ -18,7 +18,7 @@
             [handleChange]="handleChangeYear(year)"
           ></hana-select>
         </div>
-        <span class="hana-date-picker-year-month-v-line" />
+        <span class="hana-date-picker-year-month-v-line"></span>
         <div class="hana-date-picker-year-month-month">
           <hana-select
             [values]="months"
@@ -28,11 +28,11 @@
           ></hana-select>
         </div>
       </div>
-      </div>
+    </div>
   </div>
   <i
     class="hana-date-picker-year-month-next"
     [ngClass]="nextDisabled ? 'hana-date-picker-year-month-disabled' : ''"
     (click)="handleChangeToNext(year, month)"
-  />
+  ></i>
 </div>
