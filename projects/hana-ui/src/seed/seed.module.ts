@@ -5,6 +5,7 @@ import {CheckboxModule} from './checkbox/checkbox.module';
 import {DatePickerModule} from './data-picker/date-picker.module';
 import {DividerModule} from './divider/divider.module';
 import { ImageModule } from './image/image.module';
+import { LinkModule } from './link/link.module';
 
 
 
@@ -17,6 +18,7 @@ import { ImageModule } from './image/image.module';
     DatePickerModule,
     DividerModule,
     ImageModule,
+    LinkModule,
   ],
   exports: [
     ButtonModule,
@@ -24,6 +26,7 @@ import { ImageModule } from './image/image.module';
     CheckboxModule,
     DatePickerModule,
     DividerModule,
+    LinkModule,
   ],
 })
 export class SeedModule { }

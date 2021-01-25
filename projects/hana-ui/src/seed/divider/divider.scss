@@ -1,0 +1,8 @@
+@import "../../styles/config";
+
+.hana-divider {
+  height: $divider-height;
+  border: none;
+  background-color: $divider-color;
+  margin: 12px auto;
+}

@@ -22,3 +22,6 @@ export * from './seed/data-picker/date-picker/date-picker.component';
 // icon
 export * from './seed/divider/divider.module';
 export * from './seed/divider/divider.directive';
+// link
+export * from './seed/link/link.module';
+export * from './seed/link/link.component';
